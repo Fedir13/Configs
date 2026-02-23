@@ -1,6 +1,6 @@
 [{
     "height": 20,
-    "spacing": 5, 
+    "spacing": , 
 
     "modules-left": [
         "group/Utilities",
@@ -12,9 +12,7 @@
     ],
     "modules-right": [
         "group/cpuram",
-        "group/system",
-        "backlight",
-        "pulseaudio"
+        "group/system"
     ],
 
 
@@ -44,7 +42,7 @@
         ]
     },
     "custom/arch": {
-         "format": " ",
+         "format": "󰣇",
         "tooltip": false,
          "on-click": "wofi --show drun"
     },
@@ -59,9 +57,9 @@
     "custom/themeswitcher":{
         "format": "",
         "tooltip": true,
-        "tooltip-format": "Click to change wallpaper",
+        "tooltip-format": "Click to change theme",
         "on-click": "~/.config/waybar/scripts/theme-switcher.sh next",
-        "on-click-middle": "~/.local/bin/toggle_theme.sh"
+        "on-click-right": "~/.config/scripts/theme-switcher.sh random"
     },
 
     "group/workspaces":{
@@ -158,7 +156,7 @@
         "format": "RAM:{}%",
         "tooltip": false,
         "interval": 2,
-        "on-click": "kitty -e htop",
+        "on-click": "kitty -e btop",
     },
 
     "group/brightvol": {
@@ -171,19 +169,27 @@
             "custom/closebracket"
         ]
     },
-   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "󰝟 Muted",
-    "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+    "wireplumber": {
+        "scroll-step": 5,
+        "format": "{icon}{volume}%",
+        "format-bluetooth": "{icon}{volume}% ",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [" :", " :", " :"]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
     },
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-click-right": "pavucontrol"
-},
-    
     "backlight": {
         "format": "{icon}:{percent}%",
-        "format-icons": ["⏾", "", ""],
+        "format-icons": ["", "", "🌙"],
         "on-click": "~/.config/waybar/scripts/brightness_slider.sh"  
     },
 
@@ -204,7 +210,7 @@
     "clock": {
         "format": "{:%I:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "on-click": "/home/theo/.config/hypr/scripts/powermenu.sh"
+        "onclick" : "kalender"
     },
     "custom/clipboard": {
         "format": "",
@@ -221,7 +227,7 @@
         "format-charging": " {capacity}%",
         "format-plugged": "  {capacity}%",
         "format-icons": ["", "", "", "", ""],
-        "on-click": "~/.local/bin/battery-menu"
+        "on-click": "wlogout"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -240,15 +246,16 @@
 
 
 
-"network": {
-        "interface": "wlp0s20f3", // Твоя актуальна назва з ip link
+
+
+    "network": {
+        "interface": "wlan0",
         "format-wifi": "{icon}",
         "format-ethernet": "󰈀 LAN",
         "format-disconnected": "󰖪",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "on-click": "~/.local/bin/nm-menu",
-        "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ],
-        "interval": 2 // Частіше оновлюємо, щоб відгук був швидшим
+        "tooltip-format": "{ipaddr}\n{ssid} ({signalStrength}%)",
+        "on-click": "kitty -e nmtui",
+        "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ]
     },
     "custom/bluetooth": {
     "format": "{}",
@@ -261,8 +268,15 @@
         "modules": [
             "custom/openbracket",
             "clock",
-             "custom/closebracket"
-             ]
+            "custom/closebracket"
+        ]
+    },
+    "custom/cava": {
+        "exec": "~/.config/waybar/scripts/cava_wrapper.sh",
+        "format": "♪ {}",
+        "restart-interval": 1,
+        "max-length": 50,
+        "on-click": "pkill cava"
     },
     "tray": {
         "icon-size": 14,

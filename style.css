@@ -1,0 +1,49 @@
+/* GRUVBOX DARK HARD - WOFI EDITION */
+window {
+    margin: 0px;
+    border: 1px solid #3c3836; /* Твій колір borders */
+    background-color: #181a1b; /* Твій фон */
+    font-family: "Iosevka Nerd Font";
+    font-size: 14px;
+    color: #a89984; /* Твій текст */
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#input {
+    margin: 5px;
+    border: 1px solid #3c3836;
+    color: #ebdbb2; /* Світлий текст при вводі */
+    background-color: #282828; /* Трохи світліший фон */
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #a89984;
+}
+
+#entry:selected {
+    background-color: #3c3836; /* Колір виділення як у Waybar */
+    border-radius: 0px;
+}
+
+#text:selected {
+    color: #fe8019; /* Помаранчевий акцент Gruvbox */
+    font-weight: bold;
+}
